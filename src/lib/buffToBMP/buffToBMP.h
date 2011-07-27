@@ -1,6 +1,10 @@
 #ifndef BUFF_TO_BMP_H__
 #define BUFF_TO_BMP_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct _ImgStruct {
 	unsigned int width;
 	unsigned int height;
@@ -19,5 +23,10 @@ void destroyImg(ImgStruct * img);
 void drawVLine(ImgStruct * img, int startX, int constY, int endX, int color);
 void drawHLine(ImgStruct * img, int constX, int startY, int endY, int color);
 void drawRectangle(ImgStruct * img, int leftX, int topY, int rightX, int bottomY, int color);
+
+#ifdef __cplusplus
+}
+#endif
+
 
 #endif // BUFF_TO_BMP_H__
