@@ -3,6 +3,7 @@ ECHO = @echo
 RM = @rm
 RMFLAGS = -f
 
+
 #Compiling and linking
 COMPILER = @g++
 COMPILERFLAGS = -c -Wall
