@@ -23,6 +23,9 @@ protected:
 	std::string inputFile;
 
 private:
+
+	int parseTime(std::string timeString);	//return time in seconds
+
 };
 
 
