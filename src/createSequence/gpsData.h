@@ -7,7 +7,7 @@
 
 typedef std::map<std::string, std::string> frameData;
 
-class GpsData : std::vector<frameData*>
+class GpsData : public std::vector<frameData*>
 {
 public:
 

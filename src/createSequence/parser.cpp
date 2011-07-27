@@ -4,7 +4,7 @@
 #include <fstream>
 #include <sstream>
 
-#define FRAME_PER_SEC	1	//TODO : use the class instead
+#define FRAME_PER_SEC	25	//TODO : use the class instead
 
 Parser::Parser(std::string fileName)
 {
@@ -24,23 +24,24 @@ void Parser::configure()
 GpsData* Parser::parse()
 {
 	GpsData * data = new GpsData();
+	data->reserve(45*FRAME_PER_SEC); //TODO....
+		
 	std::string line;
 	std::ifstream infile (inputFile.c_str(), std::ifstream::in);
 	while (getline(infile, line, '\n'))
 	{
-//FRAME_PER_SEC * 
-//		std::string frameNumber = line.substr(0,line.find("\t"));
+//		line.substr(0,line.find("\t")); FIXME
 		std::stringstream strStream(line.substr(6,2));
 		int frameNumber;
-		
 		strStream >> frameNumber;
 		frameNumber *= FRAME_PER_SEC;
-
-		std::cout << frameNumber << std::endl;
+		
 		frameData* f = new frameData();
-//		data.insert(frameNumber, f); TODO HERE I WAS
+		(*data)[frameNumber] = f;
 		
 	}
+	std::cout << data->size() << "  " << data->capacity() << std::endl;
+	
 	
 	return data;
 }
