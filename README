@@ -1,0 +1,8 @@
+This repository contains a toolchain to generate overlays for videos.
+These overlays will feature graphical representation of data retrieved
+from a GPS source (speed, acceleration, position) synchronized with the
+current video content.
+
+This project is currently in its experimental stage.
+
+Contact : tanguy.cano@gmail.com
