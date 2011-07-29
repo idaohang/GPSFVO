@@ -42,9 +42,9 @@ GpsData* Parser::parse()
 		std::string angle = line.substr(start+1,end-start-1);
 
 		
-		frameData* f = new frameData();
-		f->insert(frameData::value_type("speed", speed));
-		f->insert(frameData::value_type("angle", angle));
+		FrameData* f = new FrameData();
+		f->insert(FrameData::value_type("speed", speed));
+		f->insert(FrameData::value_type("angle", angle));
 		(*data)[frameNumber] = f;
 		TimeReference::Instance()->registerFrame(frameNumber);
 		
