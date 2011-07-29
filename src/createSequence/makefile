@@ -12,7 +12,7 @@ LINKERFLAGS =
 
 #Project
 TARGET = createSequence
-OBJECTS = main.o parser.o gpsData.o timeReference.o
+OBJECTS = main.o parser.o gpsData.o timeReference.o sequenceGenerator.o
 INCLUDEPATHS = -I../lib/buffToBMP/
 LIBSPATHS = -L../lib/bin/
 LIBS = -lbuffToBMP
@@ -35,6 +35,7 @@ main.o : parser.h timeReference.h
 parser.o : parser.h gpsData.h timeReference.h
 gpsData.o : gpsData.h timeReference.h
 timeReference.o : timeReference.h
+sequenceGenerator.o : 
 
 #Helpers
 run : all
