@@ -5,9 +5,9 @@ class Xxx
 {
 public:
 
-   Xxx(void);
+	Xxx(void);
 
-   ~Xxx(void);
+	~Xxx(void);
 
 
 protected:
