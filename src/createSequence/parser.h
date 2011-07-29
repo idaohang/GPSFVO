@@ -25,6 +25,7 @@ protected:
 private:
 
 	int parseTime(std::string timeString);	//return time in seconds
+	std::string parseSpeed(std::string speedString);
 
 };
 
