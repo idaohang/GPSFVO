@@ -4,7 +4,7 @@
 #include <fstream>
 #include <sstream>
 
-#define FRAME_PER_SEC	25	//TODO : use the class instead
+#include "timeReference.h"
 
 Parser::Parser(std::string fileName)
 {
@@ -24,7 +24,8 @@ void Parser::configure()
 GpsData* Parser::parse()
 {
 	GpsData * data = new GpsData();
-	data->reserve(45*FRAME_PER_SEC); //TODO....
+	//TODO 45 is the max time, can't be hardcoded, need a first pass
+	data->reserve(45*TimeReference::Instance()->framesPerSecond());
 		
 	std::string line;
 	std::ifstream infile (inputFile.c_str(), std::ifstream::in);
@@ -45,10 +46,11 @@ GpsData* Parser::parse()
 		f->insert(frameData::value_type("speed", speed));
 		f->insert(frameData::value_type("angle", angle));
 		(*data)[frameNumber] = f;
+		TimeReference::Instance()->registerFrame(frameNumber);
 		
 	}
 	std::cout << data->size() << "  " << data->capacity() << std::endl;
-	
+	std::cout << "First frame:" << TimeReference::Instance()->getFirstFrame() << "  Last frame:" << TimeReference::Instance()->getLastFrame() << std::endl;
 	
 	return data;
 }
@@ -58,7 +60,7 @@ int Parser::parseTime(std::string timeString)
 	std::stringstream strStream(timeString.substr(6,2));
 	int time;
 	strStream >> time;
-	time *= FRAME_PER_SEC;
+	time *= TimeReference::Instance()->framesPerSecond();
 	return time;
 }
 

@@ -12,7 +12,7 @@ LINKERFLAGS =
 
 #Project
 TARGET = createSequence
-OBJECTS = main.o parser.o gpsData.o
+OBJECTS = main.o parser.o gpsData.o timeReference.o
 INCLUDEPATHS = -I../lib/buffToBMP/
 LIBSPATHS = -L../lib/bin/
 LIBS = -lbuffToBMP
@@ -31,9 +31,10 @@ $(TARGET) : $(OBJECTS)
 	$(COMPILER) $(COMPILERFLAGS) $(INCLUDEPATHS) $<
 
 #Per file dependency
-main.o : parser.h 
-parser.o : parser.h gpsData.h
-gpsData.o : gpsData.h
+main.o : parser.h timeReference.h
+parser.o : parser.h gpsData.h timeReference.h
+gpsData.o : gpsData.h timeReference.h
+timeReference.o : timeReference.h
 
 #Helpers
 run : all
